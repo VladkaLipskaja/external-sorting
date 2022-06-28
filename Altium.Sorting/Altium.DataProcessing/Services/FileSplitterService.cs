@@ -83,7 +83,7 @@
             CancellationToken cancellationToken)
         {
             var name = $"{index}{FileSortOptions.SplitFileEnd}";
-            await using var splitFile = File.Create(Path.Combine(Directory.GetCurrentDirectory(), name));
+            await using var splitFile = File.Create(Path.Combine(FileSortOptions.CurrentDirectory, name));
             await splitFile.WriteAsync(chunk1, cancellationToken);
             if (chunk2.Length > 0)
             {

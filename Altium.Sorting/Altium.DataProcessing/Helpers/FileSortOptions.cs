@@ -10,7 +10,8 @@ namespace Altium.DataProcessing
         
         public const string MergedFileEnd = "_merged.txt";
         
-        public static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
+        //public static readonly string CurrentDirectory = Directory.GetCurrentDirectory();
+        public static readonly string CurrentDirectory = $"C:/Users/asus/pr/external-sorting/external-sorting/Altium.Sorting/Altium.DataProcessing";
 
         public const int TempFileSize = 2 * 1024 * 1024;
 

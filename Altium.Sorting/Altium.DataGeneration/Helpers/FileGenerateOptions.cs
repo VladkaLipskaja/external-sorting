@@ -9,6 +9,7 @@
 
         public const int MinLength = 1;
 
+        //public static readonly string ResultedTextFileDirectory = $"{Directory.GetCurrentDirectory()}/../../../../../../../../Altium.DataProcessing/input.txt";
         public static readonly string ResultedTextFileDirectory = $"{Directory.GetCurrentDirectory()}/../../../../Altium.DataProcessing/input.txt";
 
         public static readonly int ChunkNumber = 2000;

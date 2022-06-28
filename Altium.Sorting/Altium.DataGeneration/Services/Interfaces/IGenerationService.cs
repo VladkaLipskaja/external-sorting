@@ -2,6 +2,6 @@
 {
     public interface IGenerationService
     {
-        Task GenerateDataAsync(long rowsNumber);
+        Task GenerateDataAsync();
     }
 }

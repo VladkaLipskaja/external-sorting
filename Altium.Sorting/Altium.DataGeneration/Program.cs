@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using BenchmarkDotNet.Running;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 namespace Altium.DataGeneration
@@ -8,7 +9,9 @@ namespace Altium.DataGeneration
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            host.Services.GetService<IGenerationService>()!.GenerateDataAsync(6_000_000).Wait();
+            host.Services.GetService<IGenerationService>()!.GenerateDataAsync().Wait();
+            
+            //BenchmarkRunner.Run<GenerationService>();
         }
 
         private static IHostBuilder CreateHostBuilder(string[] args)

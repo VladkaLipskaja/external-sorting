@@ -1,11 +1,17 @@
 ﻿using System.Collections.Concurrent;
+using BenchmarkDotNet.Attributes;
 
 namespace Altium.DataGeneration
 {
+    [MemoryDiagnoser]
     public class GenerationService : IGenerationService
     {
-        public async Task GenerateDataAsync(long rowsNumber)
+        [Benchmark]
+        //public async Task GenerateDataAsync(long rowsNumber = 60_000_000)
+        public async Task GenerateDataAsync()
         {
+            var rowsNumber = 33_000_500; // not a parameter just for benchmarking
+            
             var twinsBuffer = string.Empty;
             var outputStream = File.Create(FileGenerateOptions.ResultedTextFileDirectory);
             await using var outputWriter = new StreamWriter(outputStream);
