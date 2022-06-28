@@ -27,25 +27,7 @@ namespace Altium.DataProcessing
         {
             if (FileExists(path))
             {
-                //await ProcessFilesWithSorting(File.OpenRead($"{path}/input.txt"), File.OpenWrite($"{path}/output.txt"));
                 await Sort(File.OpenRead($"{path}/input.txt"), File.Create($"{path}/output.txt"), CancellationToken.None);
-            }
-        }
-
-        public async Task ProcessFilesWithSorting(Stream source, Stream target,
-            CancellationToken cancellationToken = default)
-        {
-            using var streamReader = new StreamReader(source);
-            var lines = new List<string>();
-            while (!streamReader.EndOfStream)
-            {
-                lines.Add(await streamReader.ReadLineAsync());
-            }
-
-            await using var streamWriter = new StreamWriter(target);
-            foreach (var line in lines.OrderBy(x => x))
-            {
-                await streamWriter.WriteLineAsync(line);
             }
         }
 
@@ -55,7 +37,6 @@ namespace Altium.DataProcessing
                 await _fileSplitterService.GetFileChunksAsync(source, cancellationToken, FileSortOptions.TempFileSize);
             var sortedFiles = await _fileSorterService.SortFilesAsync(files, cancellationToken, maxLineCapacity);
             await _fileMergerService.MergeFilesAsync(sortedFiles, target, cancellationToken);
-            // await MergeFiles(sortedFiles, target, cancellationToken);
         }
         
         private bool FileExists(string directory)
